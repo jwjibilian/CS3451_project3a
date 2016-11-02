@@ -15,6 +15,7 @@ void student_displayDancer(pt H, pt K, pt A, pt E, pt B, pt T) // displays dance
 // Recompute global dancer points (_H,..._T) from Hip center, Ball center, leg dimensions, and angle a btweeen HB and HK
 void student_computeDancerPoints
     (
+    pts c,
     pt H,     // hip center
     pt B,     // ball center 
     float a   // angle between HB and HK
@@ -32,7 +33,7 @@ void student_computeDancerPoints
    
    
    _K = P(_H);
-   _K = P(_K, _hk/d(H,B), R(V(H,B),_hipAngle));
+   _K = P(_K, _hk/d(H,B), R(V(H,B),a));
    
    _A = P(_B);
    float BK = d(B,_K);
@@ -48,10 +49,10 @@ void student_computeDancerPoints
    
    H.setTo(_H);
    B.setTo(_B);
-   P.G[1] = _K;
-   P.G[2] = _A;
-   P.G[3] = _E;
-   P.G[5] = _T;
+   c.G[1] = _K;
+   c.G[2] = _A;
+   c.G[3] = _E;
+   c.G[5] = _T;
    }
    
 void caplet(pt A, float rA, pt B, float rB) // displays Isosceles Trapezoid of axis(A,B) and half lengths rA and rB

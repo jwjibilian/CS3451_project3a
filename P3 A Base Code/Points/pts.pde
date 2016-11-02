@@ -65,6 +65,9 @@ class pts
     for (int i=1; i<nv; i++) 
       if (d(M,G[i])<d(M,G[pv])) pv=i;
     }
+  pt getClose(){
+    return G[pv];
+  }
 
   void dragPicked()  // moves selected point (index pv) by the amount by which the mouse moved recently
     { 

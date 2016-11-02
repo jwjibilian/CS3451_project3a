@@ -145,10 +145,22 @@ void mousePressed()   // executed when the mouse is pressed
 
 void mouseDragged() // executed when the mouse is dragged (while mouse buttom pressed)
   {
-  if (!keyPressed || (key=='a')|| (key=='i')) P.dragPicked();   // drag selected point with mouse
+  if (!keyPressed || (key=='a')|| (key=='i')){
+      P.pickClosest(Mouse());
+      G.pickClosest(Mouse());
+      pt closeP = P.getClose();
+      pt closeG = G.getClose();
+      if (d(Mouse(),closeP)<d(Mouse(),closeG)){
+        P.dragPicked();
+      } else {
+        G.dragPicked();
+      }
+       // drag selected point with mouse
+  }
   if (keyPressed) {
       if (key=='.') f+=2.*float(mouseX-pmouseX)/width;  // adjust current frame   
-      if (key=='/') _hipAngle-=PI*float(mouseX-pmouseX)/width;  // adjust current frame   
+      if (key=='/') _hipAngle-=PI*float(mouseX-pmouseX)/width;  // adjust current frame
+      if (key == ';') _hipAngle2-=PI*float(mouseX-pmouseX)/width;
       if (key=='t') P.dragAll(); // move all vertices
       if (key=='r') P.rotateAllAroundCentroid(Mouse(),Pmouse()); // turn all vertices around their center of mass
       if (key=='z') P.scaleAllAroundCentroid(Mouse(),Pmouse()); // scale all vertices with respect to their center of mass
