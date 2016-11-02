@@ -1,10 +1,15 @@
 // Template for 2D projects
 // Author: Jarek ROSSIGNAC
-import processing.pdf.*;    // to save screen shots as PDFs, does not always work: accuracy problems, stops drawing or messes up some curves !!!
+import processing.pdf.*;    // to save screen shots as PDFs, does not always work: accuracy problems, stops drawing or messes up some curves !!
+
+
+
 
 //**************************** global variables ****************************
+Animations anim = new Animations();
 pts P = new pts(); // class containing array of points, used to standardize GUI
 pts G = new pts();
+int frame = 0;
 float t=0, f=0;
 boolean animate=false, fill=false, timing=false;
 boolean showLetters=true; // toggles to display vector interpoations
@@ -71,7 +76,7 @@ void draw()      // executed at each frame
     //noStroke(); fill(green);  student_displayDancer(H,K2,A2,E2,B2,T2);
     student_computeDancerPoints(P,H,B,_hipAngle); // computes _H,_K,_A,_E,_B,_T  from measures and _hipAngle
     student_computeDancerPoints(G, H,B2,_hipAngle2);
-    noFill(); pen(red,2); student_displayDancer(_H,_K,_A,_E,_B,_T);
+    //noFill(); pen(red,2); student_displayDancer(_H,_K,_A,_E,_B,_T);
     
     noFill(); pen(red,4); 
     P.drawCurve(); 
@@ -81,7 +86,31 @@ void draw()      // executed at each frame
       pen(red,2); 
       showId(_H,"H"); showId(_K,"K"); showId(_A,"A"); showId(_E,"E"); showId(_B,"B");showId(_T,"T");
       } 
-   
+   if (animate){
+      pt c = P(B2);
+      print(1/3);
+      c = P(c, 1.0/3.0, V(B2,B));
+      noFill(); pen(red,4);
+      show(c);
+      if (frame==0){
+        B2.setTo( P(100,B2.y));
+        _hipAngle2 = 0;
+        
+        B.setTo(P(400,B.y));
+        
+        
+        
+      }
+      
+      if(frame>=0 && frame<=40){
+        
+      }
+      
+      H.setTo(P(c.x,H.y));
+     print("Animateing\n");
+     
+     frame++;
+   }
     
 
   if(recordingPDF) endRecordingPDF();  // end saving a .pdf file with the image of the canvas

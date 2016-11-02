@@ -49,6 +49,16 @@ void student_computeDancerPoints
    
    H.setTo(_H);
    B.setTo(_B);
+   
+   vec right= V(1,0);
+   pt underHeel = P(_E);
+   underHeel = P(underHeel, (_rB-4)/_eb, R(V(_E,_B)));
+   if (det(V(B,underHeel), right) <= 0){
+     print("thing");
+   }
+   
+   
+   
    c.G[1] = _K;
    c.G[2] = _A;
    c.G[3] = _E;
