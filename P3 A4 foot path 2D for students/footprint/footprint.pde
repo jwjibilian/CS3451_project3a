@@ -24,6 +24,9 @@ void setup()               // executed once at the begining
   //P.resetOnCircle(4); // sets P to have 4 points and places them in a circle on the canvas
   P.loadPts("data/pts");  // loads points form file saved with this program
   P.resetLabels(); 
+  for (pt x : P.G){
+    println(x);
+  }
   } // end of setup
 
 //**************************** display current frame ****************************
